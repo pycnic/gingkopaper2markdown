@@ -1,0 +1,11 @@
+# This is a template for a configuration file for
+# gingkopaper2markdown
+# Rename it to .gingkopaper2markdown and store it
+# in the working directory (takes precedence)
+# or in ~/.config/
+# command-line parameters take precedence
+
+[DEFAULT]
+user=
+password=
+treeid=
