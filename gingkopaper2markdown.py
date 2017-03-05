@@ -42,7 +42,7 @@ CONTEXT_SETTINGS = dict(
 
 
 def gingkopaper2markdown(
-    gingko_user, gingko_password, gingko_treeid,
+    gingko_user, gingko_password, gingko_treeid, gingko_headers='',
 ):
 
     try:
@@ -62,6 +62,7 @@ def gingkopaper2markdown(
     column1_lines = column1.text.splitlines()
     title = column1_lines[0].strip()[2:]
     headers = "\n".join(column1_lines[2:])
+    headers += ("\n" + gingko_headers)
 
     # get export of abstract (column 2)
     column2 = requests.get(
@@ -115,13 +116,18 @@ def gingkopaper2markdown(
     help='overwrite existing output file',
     default=default_config.get('force', False),
 )
+@click.option(
+    '--headers', '-h', help='additional headers',
+    default=default_config.get('headers', ''),
+)
 def gingkopaper2markdown_cli(
-    user, password, treeid, output, force,
+    user, password, treeid, output, force, headers,
 ):
     result = gingkopaper2markdown(
         gingko_user=user,
         gingko_password=password,
         gingko_treeid=treeid,
+        gingko_headers=headers,
     )
     if output:
         # open file for exclusive creation, raises exception if file already

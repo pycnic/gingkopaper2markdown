@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='gingkopaper2markdown',
-    version='0.1',
+    version='0.2',
     py_modules=['gingkopaper2markdown'],
     install_requires=[
         'Click',
